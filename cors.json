@@ -1,0 +1,11 @@
+[
+  {
+    "origin": [
+        "http://192.168.168.114",
+        "http://dev.appmaisters.com",
+        "https://dev.appmaisters.com"
+    ],
+    "method": ["GET"],
+    "maxAgeSeconds": 3600
+  }
+]

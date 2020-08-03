@@ -1,0 +1,4312 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Blueprint of all the restfull web-services of SeatUs Application.",
+    "version": "1.1.5",
+    "title": "SeatUs Web Services",
+    "contact": {
+      "email": "ahsaan@lntechnologies.com"
+    },
+    "license": {
+      "name": "LNTechnologies"
+    }
+  },
+  "host": "192.168.168.114",
+  "basePath": "/seatus/public/api/v1",
+  "tags": [
+    {
+      "name": "User",
+      "description": "User or Account Operations"
+    },
+    {
+      "name": "General",
+      "description": "Application core configs"
+    },
+    {
+      "name": "Ride-Trips",
+      "description": "All trip/ride operations goes under this cateogry."
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/register": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Register as user (normal|driver) in application.",
+        "description": "",
+        "operationId": "applyForRegistration",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Email to register for.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "Password which will be used for log-in.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "first_name",
+            "in": "formData",
+            "description": "First name for registration.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "last_name",
+            "in": "formData",
+            "description": "Last name for registration.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "user_type",
+            "in": "formData",
+            "description": "Either normal or driver user.",
+            "required": true,
+            "type": "string",
+            "default": "",
+            "enum": [
+              "normal",
+              "driver"
+            ]
+          },
+          {
+            "name": "school_name",
+            "in": "formData",
+            "description": "School name field for user.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "student_organization",
+            "in": "formData",
+            "description": "Student organization field for user.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "graduation_year",
+            "in": "formData",
+            "description": "Graduation year field for user.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "city",
+            "in": "formData",
+            "description": "City field for user.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "state",
+            "in": "formData",
+            "description": "State field for user.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "postal_code",
+            "in": "formData",
+            "description": "Zip code field for user.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "phone",
+            "in": "formData",
+            "description": "Phone field for user.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "device_token",
+            "in": "formData",
+            "description": "Device token for push notification.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "device_type",
+            "in": "formData",
+            "description": "Device type for push notification.",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "enum": [
+              "ios",
+              "android"
+            ]
+          },
+          {
+            "name": "facebook_token",
+            "in": "formData",
+            "description": "Facebook access token to link with user account.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Login as user (normal|driver) in application.",
+        "description": "",
+        "operationId": "loginService",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Login Email Address.",
+            "required": true,
+            "type": "string",
+            "default": "normal@appmaisters.com"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "Password which will be used for log-in.",
+            "required": true,
+            "type": "string",
+            "default": "abc123"
+          },
+          {
+            "name": "device_token",
+            "in": "formData",
+            "description": "Device token for push notification.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "device_type",
+            "in": "formData",
+            "description": "Device type for push notification.",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "enum": [
+              "ios",
+              "android"
+            ]
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/verify-account": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Verify account by entering code sent on email.",
+        "description": "",
+        "operationId": "verifyUserAccount",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "formData",
+            "description": "Account verification code.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/fb-login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Login as facebook.",
+        "description": "",
+        "operationId": "loginFacebookService",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "facebook_token",
+            "in": "formData",
+            "description": "Facebook access token for login.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "device_token",
+            "in": "formData",
+            "description": "Device token for push notification.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "device_type",
+            "in": "formData",
+            "description": "Device type for push notification.",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "enum": [
+              "ios",
+              "android"
+            ]
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/logout": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Logout user.",
+        "description": "",
+        "operationId": "logoutService",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/reset-password": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Reset user password registered.",
+        "description": "",
+        "operationId": "resetPasswordService",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Email you whish to reset password for.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/resend-verification-email": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Resend user verification email.",
+        "description": "",
+        "operationId": "resendEmailVerificationService",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Email you whish to reset password for.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/account/facebook": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Associate user account with facebook.",
+        "description": "",
+        "operationId": "associateFacebookAccount",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "facebook_token",
+            "in": "formData",
+            "description": "Valid/Active facebook token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/account/update": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update profile.",
+        "description": "",
+        "operationId": "updateProfileService",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "old_pwd",
+            "in": "formData",
+            "description": "Parameter required if changing password.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "profile_picture",
+            "in": "formData",
+            "description": "",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "Parameter required if changing password.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "first_name",
+            "in": "formData",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "last_name",
+            "in": "formData",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "gender",
+            "in": "formData",
+            "description": "**Male**, **Female** or **Other**",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "school_name",
+            "in": "formData",
+            "description": "School name field for user.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "student_organization",
+            "in": "formData",
+            "description": "Student organization field for user.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "graduation_year",
+            "in": "formData",
+            "description": "Graduation year field for user.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "city",
+            "in": "formData",
+            "description": "City field for user.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "state",
+            "in": "formData",
+            "description": "State field for user.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "postal_code",
+            "in": "formData",
+            "description": "Zip code field for user.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "phone",
+            "in": "formData",
+            "description": "Phone field for user.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "birth_date",
+            "in": "formData",
+            "description": "Date of birht of user. Format: `YYYY-MM-DD` e.g: 1983-10-29",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "driving_license_no",
+            "in": "formData",
+            "description": "A field for driver.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "vehicle_type",
+            "in": "formData",
+            "description": "A field for driver.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "vehicle_make",
+            "in": "formData",
+            "description": "A field for driver.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "vehicle_model",
+            "in": "formData",
+            "description": "A field for driver.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "vehicle_year",
+            "in": "formData",
+            "description": "A field for driver.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "policy_effective_date",
+            "in": "formData",
+            "description": "A field for driver.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "policy_expiry_date",
+            "in": "formData",
+            "description": "A field for driver.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "insurance_no",
+            "in": "formData",
+            "description": "A field for driver.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "insurance_company",
+            "in": "formData",
+            "description": "A field for driver.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "driver_documents",
+            "in": "formData",
+            "description": "Previous documents/complete payload must be provided else it'll be considered as deleted.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "driver_documents[]",
+            "in": "formData",
+            "description": "A field for driver.",
+            "required": false,
+            "type": "file",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/account/upgrade/driver": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Upgrade self-user to driver.",
+        "description": "",
+        "operationId": "upgradeUserToDriver",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "driving_license_no",
+            "in": "formData",
+            "description": "A field for driver.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "vehicle_type",
+            "in": "formData",
+            "description": "A field for driver.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "vehicle_make",
+            "in": "formData",
+            "description": "A field for driver.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "vehicle_model",
+            "in": "formData",
+            "description": "A field for driver.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "vehicle_year",
+            "in": "formData",
+            "description": "A field for driver.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "policy_effective_date",
+            "in": "formData",
+            "description": "A field for driver.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "policy_expiry_date",
+            "in": "formData",
+            "description": "A field for driver.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "insurance_no",
+            "in": "formData",
+            "description": "A field for driver.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "insurance_company",
+            "in": "formData",
+            "description": "A field for driver.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "driver_documents",
+            "in": "formData",
+            "description": "Previous documents/complete payload must be provided else it'll be considered as deleted.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "driver_documents[]",
+            "in": "formData",
+            "description": "A field for driver.",
+            "required": false,
+            "type": "file",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/account/delete": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Delete user account.",
+        "description": "",
+        "operationId": "deleteSelfAccount",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/account/me": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "View self user profile.",
+        "description": "",
+        "operationId": "viewSelfProfileService",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/account/view/{user_id}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "View other user profile.",
+        "description": "",
+        "operationId": "viewSelfProfileService",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "User ID of user.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/account/view/mutual/{user_id}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "View mutual followers of user.",
+        "description": "",
+        "operationId": "viewMutualFollowers",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "User ID of user.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/account/sync-friends": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Make friends with facebook and phone numbers",
+        "description": "",
+        "operationId": "makeFriends",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "numbers",
+            "in": "formData",
+            "description": "Contact numbers; seperated by `-,-`",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "facebook_ids",
+            "in": "formData",
+            "description": "Facebook ids; seperated by `-,-`",
+            "required": false,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/account/list/followings": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "List all my followings",
+        "description": "",
+        "operationId": "listFollowings",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "user_id",
+            "in": "formData",
+            "description": "`user_id` to see list of particular user (if required)",
+            "required": false,
+            "type": "integer",
+            "default": ""
+          },
+          {
+            "name": "limit",
+            "in": "formData",
+            "description": "Per page limit. Default: 20",
+            "required": false,
+            "type": "string",
+            "default": "20"
+          },
+          {
+            "name": "page",
+            "in": "formData",
+            "description": "Page number. Default: 1",
+            "required": false,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/account/list/notifications": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "List all my notifications",
+        "description": "",
+        "operationId": "listNotifications",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "user_type",
+            "in": "formData",
+            "description": "Either normal or driver user.",
+            "required": true,
+            "type": "string",
+            "default": "",
+            "enum": [
+              "passenger",
+              "driver"
+            ]
+          },
+          {
+            "name": "limit",
+            "in": "formData",
+            "description": "Per page limit. Default: 20",
+            "required": false,
+            "type": "string",
+            "default": "20"
+          },
+          {
+            "name": "page",
+            "in": "formData",
+            "description": "Page number. Default: 1",
+            "required": false,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/account/notification/disable/{notification_id}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Exclude notification from actionable list.",
+        "description": "",
+        "operationId": "removeActionableNotification",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "notification_id",
+            "in": "path",
+            "description": "Notification Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/account/list/pending-ratings": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Fetch the list of pending rating.",
+        "description": "",
+        "operationId": "userPendingRating",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/boot-me-up": {
+      "get": {
+        "tags": [
+          "General"
+        ],
+        "summary": "All application configurations goes here.",
+        "description": "",
+        "operationId": "initService",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/list/schools": {
+      "get": {
+        "tags": [
+          "General"
+        ],
+        "summary": "Get list of schools.",
+        "description": "",
+        "operationId": "schoolsList",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/ride/driver/popularity": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Identify the ride popularity i.e which route is most popular amoung given routes.",
+        "description": "",
+        "operationId": "driverRoutePopularity",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "route[0]",
+            "in": "formData",
+            "description": "Direction API routes in encoded polyline",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "route[1]",
+            "in": "formData",
+            "description": "Direction API routes in encoded polyline",
+            "required": false,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/ride/estimates": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Calculate the estimation for origin to destination.",
+        "description": "",
+        "operationId": "driverRouteEstimations",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "origin",
+            "in": "formData",
+            "description": "Origin coordinates of the trip. CSV of coordinates",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "destination",
+            "in": "formData",
+            "description": "Destination coordinates of the trip. CSV of coordinates",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/ride/create/public": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Create ride by driver, searchable via users (public ride)",
+        "description": "",
+        "operationId": "driverPostRide",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_name",
+            "in": "formData",
+            "description": "Name the trip.",
+            "required": false,
+            "type": "string",
+            "default": "Bahadurabad to Sindhi Muslim"
+          },
+          {
+            "name": "origin_latitude",
+            "in": "formData",
+            "description": "latitude of origin for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "24.8820309"
+          },
+          {
+            "name": "origin_longitude",
+            "in": "formData",
+            "description": "longitude of origin for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "67.0670115"
+          },
+          {
+            "name": "origin_title",
+            "in": "formData",
+            "description": "Title of origin for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "Bahadur Shah Zafar Road, Karachi, Pakistan"
+          },
+          {
+            "name": "destination_latitude",
+            "in": "formData",
+            "description": "latitude of destination for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "24.8624948"
+          },
+          {
+            "name": "destination_longitude",
+            "in": "formData",
+            "description": "longitude of destination for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "67.0551319"
+          },
+          {
+            "name": "destination_title",
+            "in": "formData",
+            "description": "Title of destination for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "Allama I. I. Qazi Chowk, Allama I.I. Qazi Chowk, Karachi, Pakistan"
+          },
+          {
+            "name": "expected_distance",
+            "in": "formData",
+            "description": "Expected distance (in meters) of the trip.",
+            "required": true,
+            "type": "string",
+            "default": "2715"
+          },
+          {
+            "name": "expected_distance_format",
+            "in": "formData",
+            "description": "Expected distance formatted.",
+            "required": true,
+            "type": "string",
+            "default": "2.7 km"
+          },
+          {
+            "name": "expected_duration",
+            "in": "formData",
+            "description": "Expected duration of the trip.",
+            "required": true,
+            "type": "string",
+            "default": "13 mins"
+          },
+          {
+            "name": "expected_start_date",
+            "in": "formData",
+            "description": "Expected start date of the trip.",
+            "required": true,
+            "type": "string",
+            "default": "1525343593456"
+          },
+          {
+            "name": "date_returning",
+            "in": "formData",
+            "description": "Expected start date of the trip.",
+            "required": false,
+            "type": "string",
+            "default": "1525516393456"
+          },
+          {
+            "name": "time_range",
+            "in": "formData",
+            "description": "Undecided/Decided time-range for the trip. Options are: `1`=Morning, `2`=Afternoon, `4`=Night, Add their value upon selction and compare them with bitwise operators.",
+            "required": true,
+            "type": "string",
+            "default": "",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7"
+            ]
+          },
+          {
+            "name": "time_range_returning",
+            "in": "formData",
+            "description": "Undecided/Decided time-range for the trip. Options are: `1`=Morning, `2`=Afternoon, `4`=Night, Add their value upon selction and compare them with bitwise operators.",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7"
+            ]
+          },
+          {
+            "name": "seats_total",
+            "in": "formData",
+            "description": "Define the total available seats of this ride.",
+            "required": true,
+            "type": "integer",
+            "default": "4",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "name": "seats_total_returning",
+            "in": "formData",
+            "description": "Enter number of seats of returning trip.",
+            "required": false,
+            "type": "integer",
+            "default": "4",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "name": "desired_gender",
+            "in": "formData",
+            "description": "Desired gender. Options are: `1`=Male, `2`=Female, Add their value upon selction and compare them with bitwise operators.",
+            "required": true,
+            "type": "integer",
+            "default": "",
+            "enum": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          {
+            "name": "is_roundtrip",
+            "in": "formData",
+            "description": "Is this round trip?",
+            "required": true,
+            "type": "integer",
+            "default": "",
+            "enum": [
+              "1",
+              "0"
+            ]
+          },
+          {
+            "name": "is_enabled_booknow",
+            "in": "formData",
+            "description": "Is enabled book-now?",
+            "required": true,
+            "type": "integer",
+            "default": "",
+            "enum": [
+              "1",
+              "0"
+            ]
+          },
+          {
+            "name": "booknow_price",
+            "in": "formData",
+            "description": "Enter customized book-now price set by driver.",
+            "required": false,
+            "type": "string",
+            "default": "2.8"
+          },
+          {
+            "name": "min_estimates",
+            "in": "formData",
+            "description": "Enter calculated min range in amount.",
+            "required": true,
+            "type": "string",
+            "default": "2.8"
+          },
+          {
+            "name": "max_estimates",
+            "in": "formData",
+            "description": "Enter calculated max range in amount.",
+            "required": true,
+            "type": "string",
+            "default": "4.8"
+          },
+          {
+            "name": "stepped_route",
+            "in": "formData",
+            "description": "Specify the stepped route in encoded polyline",
+            "required": true,
+            "type": "string",
+            "default": "uwzvCy_jxKQIGBWASIKQAWJWTMR?LFLLBTAR`@^zB|AlDbC|CrBF?@AF?LFDNDFbL`I|B|AbCtAnNpHrIxEbE`C`SpK`J~ExBlAR^RZL`@Vh@j@j@z@JbFJ~A?LMPGFc@"
+          },
+          {
+            "name": "invited_members",
+            "in": "formData",
+            "description": "User id given for the invited members; seperated by `-,-`",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "preferences",
+            "in": "formData",
+            "description": "Preference object",
+            "required": false,
+            "type": "string",
+            "default": "[{\"id\":2,\"title\":\"Pets\",\"identifier\":\"pets_02\",\"option\":\"Allow\",\"checked\":true}]"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/create/ride": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Create (Request) ride by passenger, searchable via users (public ride)",
+        "description": "",
+        "operationId": "passengerPostRide",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_name",
+            "in": "formData",
+            "description": "Name the trip.",
+            "required": false,
+            "type": "string",
+            "default": "Bahadurabad to Sindhi Muslim"
+          },
+          {
+            "name": "origin_latitude",
+            "in": "formData",
+            "description": "latitude of origin for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "24.8820309"
+          },
+          {
+            "name": "origin_longitude",
+            "in": "formData",
+            "description": "longitude of origin for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "67.0670115"
+          },
+          {
+            "name": "origin_title",
+            "in": "formData",
+            "description": "Title of origin for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "Bahadur Shah Zafar Road, Karachi, Pakistan"
+          },
+          {
+            "name": "destination_latitude",
+            "in": "formData",
+            "description": "latitude of destination for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "24.8624948"
+          },
+          {
+            "name": "destination_longitude",
+            "in": "formData",
+            "description": "longitude of destination for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "67.0551319"
+          },
+          {
+            "name": "destination_title",
+            "in": "formData",
+            "description": "Title of destination for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "Allama I. I. Qazi Chowk, Allama I.I. Qazi Chowk, Karachi, Pakistan"
+          },
+          {
+            "name": "expected_distance",
+            "in": "formData",
+            "description": "Expected distance (in meters) of the trip.",
+            "required": true,
+            "type": "string",
+            "default": "2715"
+          },
+          {
+            "name": "expected_distance_format",
+            "in": "formData",
+            "description": "Expected distance formatted.",
+            "required": true,
+            "type": "string",
+            "default": "2.7 km"
+          },
+          {
+            "name": "expected_duration",
+            "in": "formData",
+            "description": "Expected duration of the trip.",
+            "required": true,
+            "type": "string",
+            "default": "13 mins"
+          },
+          {
+            "name": "expected_start_date",
+            "in": "formData",
+            "description": "Expected start date of the trip.",
+            "required": true,
+            "type": "string",
+            "default": "1525343593456"
+          },
+          {
+            "name": "date_returning",
+            "in": "formData",
+            "description": "Expected start date of the trip.",
+            "required": false,
+            "type": "string",
+            "default": "1525516393456"
+          },
+          {
+            "name": "time_range",
+            "in": "formData",
+            "description": "Undecided/Decided time-range for the trip. Options are: `1`=Morning, `2`=Afternoon, `4`=Night, Add their value upon selction and compare them with bitwise operators.",
+            "required": true,
+            "type": "string",
+            "default": "",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7"
+            ]
+          },
+          {
+            "name": "time_range_returning",
+            "in": "formData",
+            "description": "Undecided/Decided time-range for the trip. Options are: `1`=Morning, `2`=Afternoon, `4`=Night, Add their value upon selction and compare them with bitwise operators.",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7"
+            ]
+          },
+          {
+            "name": "driver_id",
+            "in": "formData",
+            "description": "Driver id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "seats_total",
+            "in": "formData",
+            "description": "Define the total available seats of this ride. Required if driver exists.",
+            "required": false,
+            "type": "integer",
+            "default": "4",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "name": "seats_total_returning",
+            "in": "formData",
+            "description": "Enter number of seats of returning trip.",
+            "required": false,
+            "type": "integer",
+            "default": "4",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          {
+            "name": "desired_gender",
+            "in": "formData",
+            "description": "Desired gender. Options are: `1`=Male, `2`=Female, Add their value upon selction and compare them with bitwise operators.",
+            "required": true,
+            "type": "integer",
+            "default": "",
+            "enum": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          {
+            "name": "is_roundtrip",
+            "in": "formData",
+            "description": "Is this round trip?",
+            "required": true,
+            "type": "integer",
+            "default": "",
+            "enum": [
+              "1",
+              "0"
+            ]
+          },
+          {
+            "name": "is_enabled_booknow",
+            "in": "formData",
+            "description": "Is enabled book-now?",
+            "required": true,
+            "type": "integer",
+            "default": "",
+            "enum": [
+              "1",
+              "0"
+            ]
+          },
+          {
+            "name": "booknow_price",
+            "in": "formData",
+            "description": "Enter customized book-now price set by driver.",
+            "required": false,
+            "type": "string",
+            "default": "2.8"
+          },
+          {
+            "name": "min_estimates",
+            "in": "formData",
+            "description": "Enter calculated min range in amount.",
+            "required": true,
+            "type": "string",
+            "default": "2.8"
+          },
+          {
+            "name": "max_estimates",
+            "in": "formData",
+            "description": "Enter calculated max range in amount.",
+            "required": true,
+            "type": "string",
+            "default": "4.8"
+          },
+          {
+            "name": "stepped_route",
+            "in": "formData",
+            "description": "Specify the stepped route in encoded polyline",
+            "required": true,
+            "type": "string",
+            "default": "uwzvCy_jxKQIGBWASIKQAWJWTMR?LFLLBTAR`@^zB|AlDbC|CrBF?@AF?LFDNDFbL`I|B|AbCtAnNpHrIxEbE`C`SpK`J~ExBlAR^RZL`@Vh@j@j@z@JbFJ~A?LMPGFc@"
+          },
+          {
+            "name": "invited_members",
+            "in": "formData",
+            "description": "User id given for the invited members; seperated by `-,-`",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "preferences",
+            "in": "formData",
+            "description": "Preference object",
+            "required": false,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/subscribe/ride": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Subscribe for ride whenever ride created with same parameters.",
+        "description": "",
+        "operationId": "passengerSubscribeRide",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "origin_latitude",
+            "in": "formData",
+            "description": "latitude of origin for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "24.8820309"
+          },
+          {
+            "name": "origin_longitude",
+            "in": "formData",
+            "description": "longitude of origin for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "67.0670115"
+          },
+          {
+            "name": "origin_title",
+            "in": "formData",
+            "description": "Title of origin for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "Bahadur Shah Zafar Road, Karachi, Pakistan"
+          },
+          {
+            "name": "destination_latitude",
+            "in": "formData",
+            "description": "latitude of destination for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "24.8624948"
+          },
+          {
+            "name": "destination_longitude",
+            "in": "formData",
+            "description": "longitude of destination for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "67.0551319"
+          },
+          {
+            "name": "destination_title",
+            "in": "formData",
+            "description": "Title of destination for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "Allama I. I. Qazi Chowk, Allama I.I. Qazi Chowk, Karachi, Pakistan"
+          },
+          {
+            "name": "is_roundtrip",
+            "in": "formData",
+            "description": "Is this round trip?",
+            "required": true,
+            "type": "integer",
+            "default": "",
+            "enum": [
+              "1",
+              "0"
+            ]
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/ride/search": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Search public ride (by passenger)",
+        "description": "",
+        "operationId": "searchRide",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "origin_latitude",
+            "in": "formData",
+            "description": "latitude of origin for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "24.8820309"
+          },
+          {
+            "name": "origin_longitude",
+            "in": "formData",
+            "description": "longitude of origin for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "67.0670115"
+          },
+          {
+            "name": "destination_latitude",
+            "in": "formData",
+            "description": "latitude of destination for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "24.8624948"
+          },
+          {
+            "name": "destination_longitude",
+            "in": "formData",
+            "description": "longitude of destination for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "67.0551319"
+          },
+          {
+            "name": "expected_start_date",
+            "in": "formData",
+            "description": "Expected start date of the trip.",
+            "required": true,
+            "type": "string",
+            "default": "1520430884456"
+          },
+          {
+            "name": "date_returning",
+            "in": "formData",
+            "description": "Expected start date of the trip.",
+            "required": false,
+            "type": "string",
+            "default": "1525516393456"
+          },
+          {
+            "name": "time_range",
+            "in": "formData",
+            "description": "Undecided/Decided time-range for the trip. Options are: `1`=Morning, `2`=Afternoon, `4`=Night, Add their value upon selction and compare them with bitwise operators.",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7"
+            ]
+          },
+          {
+            "name": "desired_gender",
+            "in": "formData",
+            "description": "Desired gender. Options are: `1`=Male, `2`=Female, Add their value upon selction and compare them with bitwise operators.",
+            "required": false,
+            "type": "integer",
+            "default": "",
+            "enum": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          {
+            "name": "is_roundtrip",
+            "in": "formData",
+            "description": "Searching for a round trip?",
+            "required": true,
+            "type": "integer",
+            "default": "",
+            "enum": [
+              "1",
+              "0"
+            ]
+          },
+          {
+            "name": "invited_members",
+            "in": "formData",
+            "description": "User id given for the invited members; seperated by `-,-`",
+            "required": false,
+            "type": "integer",
+            "default": "1"
+          },
+          {
+            "name": "rating",
+            "in": "formData",
+            "description": "List rides with driver rating at-least `x`.",
+            "required": false,
+            "type": "integer",
+            "default": "0"
+          },
+          {
+            "name": "preferences",
+            "in": "formData",
+            "description": "Preference object with mocked (`checked`) value.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/ride/requests": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Search requested ride (by driver)",
+        "description": "",
+        "operationId": "viewRequestedRide",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "origin_latitude",
+            "in": "formData",
+            "description": "latitude of origin for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "24.8820309"
+          },
+          {
+            "name": "origin_longitude",
+            "in": "formData",
+            "description": "longitude of origin for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "67.0670115"
+          },
+          {
+            "name": "destination_latitude",
+            "in": "formData",
+            "description": "latitude of destination for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "24.8624948"
+          },
+          {
+            "name": "destination_longitude",
+            "in": "formData",
+            "description": "longitude of destination for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "67.0551319"
+          },
+          {
+            "name": "expected_start_date",
+            "in": "formData",
+            "description": "Expected start date of the trip.",
+            "required": true,
+            "type": "string",
+            "default": "1520430884456"
+          },
+          {
+            "name": "date_returning",
+            "in": "formData",
+            "description": "Expected start date of the trip.",
+            "required": false,
+            "type": "string",
+            "default": "1525516393456"
+          },
+          {
+            "name": "time_range",
+            "in": "formData",
+            "description": "Undecided/Decided time-range for the trip. Options are: `1`=Morning, `2`=Afternoon, `4`=Night, Add their value upon selction and compare them with bitwise operators.",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7"
+            ]
+          },
+          {
+            "name": "desired_gender",
+            "in": "formData",
+            "description": "Desired gender. Options are: `1`=Male, `2`=Female, Add their value upon selction and compare them with bitwise operators.",
+            "required": false,
+            "type": "integer",
+            "default": "",
+            "enum": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          {
+            "name": "is_roundtrip",
+            "in": "formData",
+            "description": "Searching for a round trip?",
+            "required": false,
+            "type": "integer",
+            "default": "",
+            "enum": [
+              "1",
+              "0"
+            ]
+          },
+          {
+            "name": "rating",
+            "in": "formData",
+            "description": "List rides with driver rating at-least `x`.",
+            "required": false,
+            "type": "integer",
+            "default": "0"
+          },
+          {
+            "name": "preferences",
+            "in": "formData",
+            "description": "Preference object with mocked (`checked`) value.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/share-itenerary": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Passenger Share Itenerary",
+        "description": "",
+        "operationId": "passengerShareItenerary",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "formData",
+            "description": "Trip ID.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "invitee",
+            "in": "formData",
+            "description": "[{\"first_name\":\"first\", \"last_name\":\"last\", \"email\":\"first@email.com\", \"mobile\":\"+18321568498\"},{\"first_name\":\"second\", \"last_name\":\"last\", \"email\":\"second@email.com\"}]",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/past/trips": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Get user past trips",
+        "description": "",
+        "operationId": "passengerPastTrips",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "latitude",
+            "in": "formData",
+            "description": "Destination latitude.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "longitude",
+            "in": "formData",
+            "description": "Destination longitude.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "date",
+            "in": "formData",
+            "description": "Ride ended date",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "limit",
+            "in": "formData",
+            "description": "Per page limit. Default: 20",
+            "required": false,
+            "type": "string",
+            "default": "20"
+          },
+          {
+            "name": "page",
+            "in": "formData",
+            "description": "Page number. Default: 1",
+            "required": false,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/upcoming/trips": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Get user upcoming trips",
+        "description": "",
+        "operationId": "passengerUpcomingTrips",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "latitude",
+            "in": "formData",
+            "description": "Destination latitude.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "longitude",
+            "in": "formData",
+            "description": "Destination longitude.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "date",
+            "in": "formData",
+            "description": "Ride ended date",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "limit",
+            "in": "formData",
+            "description": "Per page limit. Default: 20",
+            "required": false,
+            "type": "string",
+            "default": "20"
+          },
+          {
+            "name": "page",
+            "in": "formData",
+            "description": "Page number. Default: 1",
+            "required": false,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/book-now": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Passenger calling book now service.",
+        "description": "",
+        "operationId": "passengerMakeOffer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "formData",
+            "description": "Trip ID.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "driver_id",
+            "in": "formData",
+            "description": "Driver Id of the trip.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "bags",
+            "in": "formData",
+            "description": "Enter number of bags if any",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          },
+          {
+            "name": "invited_members",
+            "in": "formData",
+            "description": "User id given for the invited members; seperated by `-,-`",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "is_roundtrip",
+            "in": "formData",
+            "description": "If passenger searched with roundtrip enabled?",
+            "required": false,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/make/offer": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Passenger making offer with friends on a trip.",
+        "description": "",
+        "operationId": "passengerMakeOffer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "formData",
+            "description": "Trip ID.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "driver_id",
+            "in": "formData",
+            "description": "Driver Id to send offer to.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "price",
+            "in": "formData",
+            "description": "Offered amount",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "bags",
+            "in": "formData",
+            "description": "Enter number of bags if any",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          },
+          {
+            "name": "invited_members",
+            "in": "formData",
+            "description": "User id given for the invited members; seperated by `-,-`",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "is_roundtrip",
+            "in": "formData",
+            "description": "If passenger searched with roundtrip enabled?",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "time_range",
+            "in": "formData",
+            "description": "Enter desired ride time to travel.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "pickup_latitude",
+            "in": "formData",
+            "description": "Enter Pickup Latitude of passenger.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "pickup_longitude",
+            "in": "formData",
+            "description": "Enter Pickup Longitude of passenger.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "pickup_title",
+            "in": "formData",
+            "description": "Enter Pickup Title of passenger.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "dropoff_latitude",
+            "in": "formData",
+            "description": "Enter Dropoff Latitude of passenger.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "dropoff_longitude",
+            "in": "formData",
+            "description": "Enter Dropoff Longitude of passenger.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "dropoff_title",
+            "in": "formData",
+            "description": "Enter Dropoff Title of passenger.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/accept/offer": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Passenger accepting offer from a driver.",
+        "description": "",
+        "operationId": "passengerAcceptOffer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "formData",
+            "description": "Trip ID.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "driver_id",
+            "in": "formData",
+            "description": "Driver Id to send offer to.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "price",
+            "in": "formData",
+            "description": "Offered amount",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "bags",
+            "in": "formData",
+            "description": "Enter number of bags if any",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          },
+          {
+            "name": "is_roundtrip",
+            "in": "formData",
+            "description": "If passenger searched with roundtrip enabled?",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "time_range",
+            "in": "formData",
+            "description": "Enter desired ride time to travel.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "promo_code",
+            "in": "formData",
+            "description": "Enter promo code if any.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/reject/offer": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Passenger rejecting an offer from a driver.",
+        "description": "",
+        "operationId": "passengerRejectOffer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "formData",
+            "description": "Trip ID.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "driver_id",
+            "in": "formData",
+            "description": "Driver Id to send offer to.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "price",
+            "in": "formData",
+            "description": "Offered amount",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/trip/payment": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Process passenger trip's payment",
+        "description": "",
+        "operationId": "passengerTripPayment",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "formData",
+            "description": "Trip ID.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/trip/cancel": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Cancel trip by passenger.",
+        "description": "",
+        "operationId": "passengerCancelTrip",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "formData",
+            "description": "Trip ID.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/offers": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Get user ride offers",
+        "description": "",
+        "operationId": "PassengerRideOffers",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/offer/detail/{trip_id}": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "View offered trip detail by passenger role",
+        "description": "",
+        "operationId": "getTripOfferDetailByPassenger",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "path",
+            "description": "Trip ID of trip.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "driver_id",
+            "in": "formData",
+            "description": "Driver Id of trip.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/ride/detail/{trip_id}": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "View trip detail by passenger role",
+        "description": "",
+        "operationId": "getTripDetailByPassenger",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "path",
+            "description": "Trip ID of trip.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "fetch_return",
+            "in": "path",
+            "description": "Fetch return trip's data as well (if current trip is roundtrip).",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "enum": [
+              "true",
+              "false"
+            ]
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/rate/trip/{trip_id}": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Passenger rate trip",
+        "description": "",
+        "operationId": "passengerRateTrip",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "path",
+            "description": "Trip ID of trip.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "rating",
+            "in": "formData",
+            "description": "Rating 1 to 5",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "feedback",
+            "in": "formData",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/rate/drivers": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Passenger rating to drivers",
+        "description": "",
+        "operationId": "PassengerRateDriver",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "rating_data",
+            "in": "formData",
+            "description": "[{\"trip_id\": 342,\"user_id\": 170,\"rating\": 4.00,\"feedback\": \"Great\"}, {\"trip_id\": 342,\"user_id\": 171,\"rating\": 5.00,\"feedback\": \"Excellent\"}]",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/add/credit-card": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Passenger add credit card",
+        "description": "",
+        "operationId": "passengerAddCreditCard",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "card_token",
+            "in": "formData",
+            "description": "Valid stipe token",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "last_digits",
+            "in": "formData",
+            "description": "Last 4 digits of credit card",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/get/credit-card": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Passenger get credit card",
+        "description": "",
+        "operationId": "passengerGetCreditCard",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/default/credit-card": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Passenger set default credit card",
+        "description": "",
+        "operationId": "passengerSetDefaultCreditCard",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "card_id",
+            "in": "formData",
+            "description": "",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/remove/credit-card": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Passenger remove credit card",
+        "description": "",
+        "operationId": "passengerRemoveCreditCard",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "card_id",
+            "in": "formData",
+            "description": "",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/payment/history": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Get passenger payment history",
+        "description": "",
+        "operationId": "passengerPaymentHistory",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "limit",
+            "in": "formData",
+            "description": "Per page limit. Default: 20",
+            "required": false,
+            "type": "string",
+            "default": "20"
+          },
+          {
+            "name": "page",
+            "in": "formData",
+            "description": "Page number. Default: 1",
+            "required": false,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/passenger/apply-promo": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Apply Promo Code",
+        "description": "",
+        "operationId": "passengerApplyPromo",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "amount",
+            "in": "formData",
+            "description": "Enter trip amount.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "promo_code",
+            "in": "formData",
+            "description": "Enter promo code.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/share-itenerary": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Driver Share Itenerary",
+        "description": "",
+        "operationId": "driverShareItenerary",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "formData",
+            "description": "Trip ID.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "invitee",
+            "in": "formData",
+            "description": "[{\"first_name\":\"first\", \"last_name\":\"last\", \"email\":\"first@email.com\", \"mobile\":\"+18321568498\"},{\"first_name\":\"second\", \"last_name\":\"last\", \"email\":\"second@email.com\"}]",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/list/subscribed-routes": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Driver list all subscribed routes.",
+        "description": "",
+        "operationId": "driverSubscribedRoutesList",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "origin_latitude",
+            "in": "formData",
+            "description": "latitude of origin for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "24.8820309"
+          },
+          {
+            "name": "origin_longitude",
+            "in": "formData",
+            "description": "longitude of origin for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "67.0670115"
+          },
+          {
+            "name": "destination_latitude",
+            "in": "formData",
+            "description": "latitude of destination for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "24.8624948"
+          },
+          {
+            "name": "destination_longitude",
+            "in": "formData",
+            "description": "longitude of destination for the trip.",
+            "required": true,
+            "type": "string",
+            "default": "67.0551319"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/past/trips": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Get user past trips",
+        "description": "",
+        "operationId": "driverPastTrips",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "latitude",
+            "in": "formData",
+            "description": "Destination latitude.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "longitude",
+            "in": "formData",
+            "description": "Destination longitude.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "date",
+            "in": "formData",
+            "description": "Ride ended date",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "limit",
+            "in": "formData",
+            "description": "Per page limit. Default: 20",
+            "required": false,
+            "type": "string",
+            "default": "20"
+          },
+          {
+            "name": "page",
+            "in": "formData",
+            "description": "Page number. Default: 1",
+            "required": false,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/upcoming/trips": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Get user upcoming trips",
+        "description": "",
+        "operationId": "driverUpcomingTrips",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "latitude",
+            "in": "formData",
+            "description": "Destination latitude.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "longitude",
+            "in": "formData",
+            "description": "Destination longitude.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "date",
+            "in": "formData",
+            "description": "Ride ended date",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "limit",
+            "in": "formData",
+            "description": "Per page limit. Default: 20",
+            "required": false,
+            "type": "string",
+            "default": "20"
+          },
+          {
+            "name": "page",
+            "in": "formData",
+            "description": "Page number. Default: 1",
+            "required": false,
+            "type": "string",
+            "default": "1"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/make/offer": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "driver making offer to a requested trip.",
+        "description": "",
+        "operationId": "driverMakeOffer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "formData",
+            "description": "Trip ID.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "price",
+            "in": "formData",
+            "description": "Offered amount",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "passenger_id",
+            "in": "formData",
+            "description": "Passenger Id to send offer to (if not given then all passengers of the trip will be offered)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "seats_total",
+            "in": "formData",
+            "description": "Enter number of seats available.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "time_range",
+            "in": "formData",
+            "description": "Enter desired time_range to travel.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/accept/offer": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "driver accepting offer of a passenger on a trip.",
+        "description": "",
+        "operationId": "driverAcceptOffer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "formData",
+            "description": "Trip ID.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "passenger_id",
+            "in": "formData",
+            "description": "Passenger Id to accepting offer from.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "price",
+            "in": "formData",
+            "description": "Offered amount",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "seats_total",
+            "in": "formData",
+            "description": "Enter number of seats",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "seats_total_returning",
+            "in": "formData",
+            "description": "Enter number of seats of returning trip.",
+            "required": false,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/offers": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Get user ride offers",
+        "description": "",
+        "operationId": "rideDriverOffers",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/offer/detail/{trip_id}": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "View offered trip detail by driver role",
+        "description": "",
+        "operationId": "getTripOfferDetailByDriver",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "path",
+            "description": "Trip ID of trip.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "passenger_id",
+            "in": "formData",
+            "description": "Passenger Id of trip.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/ride/detail/{trip_id}": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "View trip detail by driver role",
+        "description": "",
+        "operationId": "getTripDetailByDriver",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "path",
+            "description": "Trip ID of trip.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/ride/update-seats/{trip_id}": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Update ride seats by driver role",
+        "description": "",
+        "operationId": "updateRideSeats",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "path",
+            "description": "Trip ID of trip.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "seats",
+            "in": "formData",
+            "description": "Updated seats of ride.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/ride/eliminate": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Eliminate reserved-passenger from ride",
+        "description": "",
+        "operationId": "driverRideEliminate",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "formData",
+            "description": "Trip ID.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "passenger_id",
+            "in": "formData",
+            "description": "Trip ID of trip.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/trip/cancel": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Cancel trip by driver.",
+        "description": "",
+        "operationId": "driverCancelTrip",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "formData",
+            "description": "Trip ID.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+	"/driver/preschedule/ride/time": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Choose ride time before passengers confirmed.",
+        "description": "",
+        "operationId": "driverPreScheduleRideTime",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "formData",
+            "description": "Trip ID.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "pickup_time",
+            "in": "formData",
+            "description": "UNIX Timestamp",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/schedule/ride/time": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Finalize ride time.",
+        "description": "",
+        "operationId": "driverScheduleRideTime",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "formData",
+            "description": "Trip ID.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "pickup_time",
+            "in": "formData",
+            "description": "UNIX Timestamp",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/schedule/ride/time/forcefully": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Finalize ride time forcefully when seats are available.",
+        "description": "",
+        "operationId": "driverScheduleRideTime",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "formData",
+            "description": "Trip ID.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "pickup_time",
+            "in": "formData",
+            "description": "UNIX Timestamp",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/start/trip": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Driver start trip",
+        "description": "",
+        "operationId": "driverStartTrip",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "formData",
+            "description": "Trip ID.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/resume/trip": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Driver resume trip",
+        "description": "",
+        "operationId": "driverResumeTrip",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "formData",
+            "description": "Trip ID.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/mark/pickup": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Driver mark pickup",
+        "description": "",
+        "operationId": "driverMarkPickup",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "formData",
+            "description": "Trip ID.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "passenger_ids",
+            "in": "formData",
+            "description": "User id given for the invited members; seperated by `-,-`",
+            "required": false,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/mark/dropoff": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Driver mark dropoff",
+        "description": "",
+        "operationId": "driverMarkDropoff",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "formData",
+            "description": "Trip ID.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "passenger_ids",
+            "in": "formData",
+            "description": "User id given for the invited members; seperated by `-,-`",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "coordinates",
+            "in": "formData",
+            "description": "Coordinates of current dropped passenger",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/end/trip": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Driver end trip",
+        "description": "",
+        "operationId": "driverEndTrip",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "formData",
+            "description": "Trip ID.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/rate/trip/{trip_id}": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Driver rate trip",
+        "description": "",
+        "operationId": "driverRateTrip",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "trip_id",
+            "in": "path",
+            "description": "Trip ID of trip.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "passenger_id",
+            "in": "formData",
+            "description": "A valid passenger id",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "rating",
+            "in": "formData",
+            "description": "Rating 1 to 5",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "feedback",
+            "in": "formData",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/rate/passengers": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Driver rate trip members",
+        "description": "",
+        "operationId": "driverRateTripMembers",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "rating_data",
+            "in": "formData",
+            "description": "[{\"trip_id\": 342,\"user_id\": 170,\"rating\": 4.00,\"feedback\": \"Great\"}, {\"trip_id\": 342,\"user_id\": 171,\"rating\": 5.00,\"feedback\": \"Excellent\"}]",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/bank-details/read": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Get driver bank details",
+        "description": "",
+        "operationId": "driverGetBankAccounts",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/driver/bank-details/update": {
+      "post": {
+        "tags": [
+          "Ride-Trips"
+        ],
+        "summary": "Get driver bank details",
+        "description": "",
+        "operationId": "driverUpdateBankAccounts",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_token",
+            "in": "formData",
+            "description": "Authenticated JWT Token.",
+            "required": true,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "body",
+            "in": "formData",
+            "description": "Encrypted entire body except _token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "bank_name",
+            "in": "formData",
+            "description": "Name of bank",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "account_title",
+            "in": "formData",
+            "description": "Account Title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "routing_number",
+            "in": "formData",
+            "description": "Routing Number",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "account_number",
+            "in": "formData",
+            "description": "Account Number",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "personal_id_number",
+            "in": "formData",
+            "description": "Personal Id Number",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ssn_last_4",
+            "in": "formData",
+            "description": "SSN Last 4",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "address",
+            "in": "formData",
+            "description": "Address",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "in": "formData",
+            "description": "State",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "city",
+            "in": "formData",
+            "description": "City",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "postal_code",
+            "in": "formData",
+            "description": "Postal Code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "birth_date",
+            "in": "formData",
+            "description": "Birth Date. Format: mm/dd/yyyy",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    }
+  },
+  "securityDefinitions": {
+
+  },
+  "definitions": {
+
+  }
+}

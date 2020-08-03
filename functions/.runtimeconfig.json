@@ -1,0 +1,9 @@
+{
+  "firebase": {
+    "databaseURL": "https://wherr2-app-20904.firebaseio.com",
+    "storageBucket": "wherr2-app-20904.appspot.com",
+    "apiKey": "AIzaSyC9iRb2JbjV5lpy2SlUfwZlWP-Tx8y-ba8",
+    "authDomain": "wherr2-app-20904.firebaseapp.com",
+    "projectId": "wherr2-app-20904"
+  }
+}
