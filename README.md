@@ -28,10 +28,16 @@ Configure these keys in .env
 - DB_USERNAME
 - DB_PASSWORD
 
-3. Build docker images  
+3. Install php packages  
+
+composer install
+
+4. Build docker images  
+
 docker-compose build
 
-4. Run docker containers  
+5. Run docker containers  
+
 docker-compose up -d && docker-compose logs -f
 
 ### Team
