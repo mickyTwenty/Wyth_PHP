@@ -23,6 +23,10 @@ sql-examples.sql
 laradock
 firestore
 
+.phpunit.result.cache
+yarn-error.log
+run/var
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
