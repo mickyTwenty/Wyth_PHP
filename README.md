@@ -30,7 +30,12 @@ Configure these keys in .env
 
 3. Install php packages  
 
-composer install
+You have to install php executes by running `composer install`.  
+You can run this command outside or inside of docker.  
+- Outside of docker  
+  Under project directory, run `composer install` (Not recommended)
+- Inside of docker  
+  Under project directory, run `docker-compose exec laravel-app composer install`  
 
 4. Build docker images  
 
