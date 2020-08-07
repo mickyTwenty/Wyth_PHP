@@ -30,7 +30,8 @@ Configure these keys in .env
 
 3. Install php packages  
 
-You have to install php executes by running `composer install`.  
+You have to install php packages by running `composer install`.  
+
 You can run this command outside or inside of docker.  
 - Outside of docker  
   Under project directory, run `composer install` (Not recommended)
