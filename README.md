@@ -15,11 +15,11 @@ It'll download all dependencies to project, then import database file and config
 
 ## How to Start
 
-1. Need to install docker && docker-compose
+1. Need to install docker && docker-compose(optional)
 
 Read this article https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=94798094
 
-2. Copy .env.example as .env  
+2. Copy .env.example as .env  ( optional for docker-compose)
 Configure these keys in .env  
 - UID (developer set their own uid )
 - DB_HOST
@@ -32,19 +32,15 @@ Configure these keys in .env
 
 You have to install php packages by running `composer install`.  
 
-You can run this command outside or inside of docker.  
-- Outside of docker  
-  Under project directory, run `composer install` (Not recommended)
-- Inside of docker  
-  Under project directory, run `docker-compose exec laravel-app composer install`  
+Under project directory, run `composer install`
 
 4. Build docker images  
 
-docker-compose build
+docker build -t laravel-app
 
 5. Run docker containers  
 
-docker-compose up -d && docker-compose logs -f
+docker run -p 80:80 laravel-app
 
 ### Team
 -- Ahsaan Muhammad Yousuf (Backend)
