@@ -20,7 +20,6 @@ RUN apt-get install -y \
 
 # 2. apache configs + document root
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
-ENV uid=1000
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
@@ -44,8 +43,6 @@ RUN docker-php-ext-install \
 # 5. composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-ADD . /var/www/html
-
 # 6. we need a user with the same UID/GID with host user
 # so when we execute CLI commands, all the host file's ownership remains intact
 # otherwise command from inside container will create root-owned files and directories
@@ -53,5 +50,3 @@ ARG uid
 RUN useradd -G www-data,root -u $uid -d /home/devuser devuser
 RUN mkdir -p /home/devuser/.composer && \
     chown -R devuser:devuser /home/devuser
-
-WORKDIR /var/www/html
