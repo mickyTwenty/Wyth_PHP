@@ -36,11 +36,11 @@ Under project directory, run `composer install`
 
 4. Build docker images  
 
-docker build -t laravel-app
+`docker build . -t laravel-app`
 
 5. Run docker containers  
 
-docker run -p 80:80 laravel-app
+`docker run -p 80:80 laravel-app`
 
 ### Team
 -- Ahsaan Muhammad Yousuf (Backend)
